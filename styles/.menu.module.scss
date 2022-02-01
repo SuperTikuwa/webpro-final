@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  a {
+    color: #6f6f6f;
+    text-decoration: none;
+    width: 100%;
+
+    .menuItem {
+      border: #6f6f6f solid 5px;
+      border-radius: 10px;
+      font-size: 60px;
+      text-align: center;
+      margin: 20px;
+    }
+  }
+}

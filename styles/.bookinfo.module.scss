@@ -1,0 +1,31 @@
+.thumbnail {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+
+  .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 10px;
+    flex-wrap: wrap;
+    flex-flow: column;
+    font-size: large;
+
+    h2 {
+      margin-right: auto;
+    }
+
+    .subinfo {
+      margin: 0 10px 0 0;
+      padding: 0;
+      margin-left: auto;
+    }
+  }
+
+  img {
+    margin: 10px 10px 0 0;
+  }
+}
