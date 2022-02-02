@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/.bookinfo.module.scss";
 import { parseCookies } from "nookies";
+import Router from "next/router";
 
 const BookInfo = () => {
   const router = useRouter();
@@ -20,8 +21,15 @@ const BookInfo = () => {
   }, []);
 
   const cookies = parseCookies();
-
-  console.log(cookies);
+  if (typeof window !== "undefined") {
+    if (
+      cookies.userID === undefined ||
+      cookies.userID === null ||
+      cookies.userID === "undefined"
+    ) {
+      Router.push("/mypage/auth");
+    }
+  }
 
   const handleClick = async (e, bookID) => {
     e.preventDefault();
@@ -42,6 +50,8 @@ const BookInfo = () => {
     }
   };
 
+  console.log(book);
+
   return (
     <div>
       <div className={styles.wrapper}>
@@ -55,8 +65,18 @@ const BookInfo = () => {
         </div>
         <img className={styles.thumbnail} src={book.thumbnail} />
       </div>
-      <p>{book.status}</p>
-      <button onClick={(e) => handleClick(e, book_id)}>借りる</button>
+      <div className={styles.lendContainer}>
+        {book.status !== "" ? (
+          <p className={styles.statusText}>{book.status}に貸出中です</p>
+        ) : (
+          <button
+            className={styles.lend}
+            onClick={(e) => handleClick(e, book_id)}
+          >
+            借りる
+          </button>
+        )}
+      </div>
     </div>
   );
 };

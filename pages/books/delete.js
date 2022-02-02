@@ -1,5 +1,6 @@
 import React from "react";
-import Link from "next/link";
+import styles from "../../styles/.mypage.module.scss";
+
 const Delete = () => {
   const [books, setBooks] = React.useState([]);
 
@@ -29,13 +30,15 @@ const Delete = () => {
 
   return (
     <div>
-      <h1>Delete</h1>
+      <h2>Delete</h2>
       <ul>
         {books &&
           books.map((book, index) => (
             <li key={book.id}>
-              <h2>{book.title}</h2>
-              <button onClick={(e) => handleClick(e, book.id)}>削除</button>
+              <div className={styles.listContainer}>
+                <p>{book.title}</p>
+                <button onClick={(e) => handleClick(e, book.id)}>削除</button>
+              </div>
             </li>
           ))}
       </ul>

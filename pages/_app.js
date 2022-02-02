@@ -1,8 +1,11 @@
 import "../styles/globals.scss";
 import Head from "next/head";
 import Link from "next/link";
+import { parseCookies } from "nookies";
 
 function MyApp({ Component, pageProps }) {
+  const cookies = parseCookies();
+
   return (
     <div>
       <Head>

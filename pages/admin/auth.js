@@ -27,7 +27,7 @@ const Auth = () => {
 
   return (
     <div>
-      <h1>Auth</h1>
+      <h2>Auth</h2>
       <form onSubmit={handleSubmit}>
         <input type="password" placeholder="password" ref={pass} />
         <button type="submit">submit</button>

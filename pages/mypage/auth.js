@@ -1,14 +1,19 @@
 import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
 import React from "react";
+import styles from "../../styles/.auth.module.scss";
 
-const Register = (props) => {
+const Register = () => {
   const name = React.useRef(null);
 
   const cookies = parseCookies();
 
   if (typeof window !== "undefined") {
-    if (cookies.userID !== "undefined") {
+    if (
+      cookies.userID !== undefined &&
+      cookies.userID !== null &&
+      cookies.userID !== "undefined"
+    ) {
       Router.push("/");
     }
   }
@@ -36,8 +41,8 @@ const Register = (props) => {
 
   return (
     <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit} className={styles.inputForm}>
         <input type="text" placeholder="username" ref={name} />
         <button type="submit">submit</button>
       </form>

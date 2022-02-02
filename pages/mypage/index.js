@@ -1,14 +1,19 @@
-import Link from "next/link";
-import styles from "../../styles/.menu.module.scss";
+import styles from "../../styles/.mypage.module.scss";
 import { parseCookies } from "nookies";
 import Router from "next/router";
 import React from "react";
 
 const MyPage = () => {
   const cookies = parseCookies();
+  console.log(cookies.userID);
 
   if (typeof window !== "undefined") {
-    if (cookies.userID === "undefined") {
+    console.log(cookies.userID);
+    if (
+      cookies.userID === undefined ||
+      cookies.userID === null ||
+      cookies.userID === "undefined"
+    ) {
       Router.push("/mypage/auth");
     }
   }
@@ -44,21 +49,28 @@ const MyPage = () => {
 
   return (
     <div>
-      <h1>MyPage</h1>
+      <h2>MyPage</h2>
       <ul>
         {lendings &&
           lendings.map((lending) => (
             <li key={lending.id}>
-              <p>{lending.title}</p>
-              <button
-                onClick={(e) => {
-                  handleClick(e, lending.id);
-                }}
-              >
-                返却
-              </button>
+              <div className={styles.listContainer}>
+                <p>{lending.title}</p>
+                <button
+                  onClick={(e) => {
+                    handleClick(e, lending.id);
+                  }}
+                >
+                  返却
+                </button>
+              </div>
             </li>
           ))}
+        {lendings.length === 0 ? (
+          <div className={styles.listContainer}>
+            <p>借りている本はありません。</p>
+          </div>
+        ) : null}
       </ul>
     </div>
   );
